@@ -1,0 +1,30 @@
+{
+  "name": "tweet-hop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACG4/tweet-hop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACG4/tweet-hop/issues"
+  },
+  "homepage": "https://github.com/FACG4/tweet-hop#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "moment": "^2.22.2",
+    "react": "^16.4.1",
+    "react-datepicker": "^1.5.0",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  }
+}
