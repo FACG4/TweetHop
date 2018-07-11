@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import moment from 'moment';
 import axios from 'axios';
 import Search from './Components/Search/Search';
@@ -37,6 +37,7 @@ class App extends Component {
     e.preventDefault();
     axios.get(`https://tweetshub.herokuapp.com/api/v1/usertweets/${this.state.userName}`)
     .then((response) => {
+      // console.log(response);
       if (response.data.errors) {
         this.setState({error:'User dose not exist'});
       } else if (response.data.error) {
@@ -61,7 +62,7 @@ class App extends Component {
   render() {
     return (<div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Tweet Hop</h1>
       </header>
       <Search
