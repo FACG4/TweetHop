@@ -1,9 +1,12 @@
 import React from 'react';
+import './style.css';
+
 function Result(props) {
-  return (<li>
+  return (
+  < li className = "result card" >
     <p>{props.text}</p>
-    <div>{props.time}</div>
     <hr/>
+    <div className="time">{props.time}</div>
   </li>)
 }
 export default Result;

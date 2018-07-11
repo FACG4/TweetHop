@@ -7,6 +7,7 @@ import Search from './Components/Search/Search';
 import Result from './Components/Result/Result';
 import Profile from './Components/Profile/Profile';
 import './App.css';
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -23,16 +24,16 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleUserName = this.handleUserName.bind(this);
     this.showSeacrh = this.showSeacrh.bind(this);
+    this.reverseArr = this.reverseArr.bind(this);
   }
 
   handleUserName(e) {
-    console.log(e.target.value);
     this.setState({userName: e.target.value,error:''})
   }
 
   handleChange(date) {
-    console.log(date._d)
-    console.log(date.format('MMM DD, YYYY'))
+    // console.log(date._d)
+    // console.log(date.format('MMM DD, YYYY'))
     this.setState({startDate: date});
   }
 
@@ -40,35 +41,31 @@ class App extends Component {
     e.preventDefault();
     axios.get(`https://tweetshub.herokuapp.com/api/v1/usertweets/${this.state.userName}`)
     .then((response) => {
-      console.log(response);
       if (response.data.message === 'Sorry, that page does not exist.') {
-        this.setState({error:'User dose not exist'});
+        this.setState({error:"User deson't exist"});
       } else if (response.data.message === 'Not authorized.') {
-        this.setState({error:'The account is private'});
+        this.setState({error:'Private Account'});
       } else {
-        this.setState((prevState)=>{
-          console.log(prevState.userName);
-          return{result: response.data,
+        this.setState({
+          result: response.data,
             viewForm:false,
             viewResult:true
           }
-        })
+        )
 
       }
     }).catch((error) => {
-      console.log(error);
+      this.setState({
+        err:'Something Went Wrong'
+      })
     });
   }
 
   showSeacrh() {
     this.setState((prevState)=>{
-      console.log(prevState.userName);
       return{
         userName:prevState.userName,
         viewForm:!this.state.viewForm,
-        // viewResult:!this.state.viewResult
-
-
       }
 
     })
@@ -81,47 +78,70 @@ class App extends Component {
     })
   }
 
+  reverseArr(){
+    this.setState({
+      result:this.state.result.reverse()
+    })    
+  }
+
   render() {
     return(
       <div className="App">
+      {
+        !this.state.viewResult?
       <header className="App-header">
-
         <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">TweetHop</h1>
+        <h2 className="App-title">TweetHop</h2>
       </header>
-      <div>{this.state.error}</div>
-      {this.state.viewForm
-      ?<Search
-        userName={this.state.userName}
-        handleClick={this.handleClick}
-        handleUserName={this.handleUserName}
-        startDate={this.state.startDate}
-        handleChange={this.handleChange}
-      />
+      :
+      <header className="App-header-small">
+        <img src={logo} className="App-logo-small" alt="logo" />
+        <h4 className="App-title">TweetHop</h4>
+      </header>
+      }
 
-      : <img className="search-icon" src={search} onClick={this.showSeacrh}/>
-    }
+      { this.state.error !== '' 
+        ? <div className="alert">{this.state.error}</div>
+        : ''
+      }
+      {
+        this.state.viewForm
+        ?<Search
+          userName={this.state.userName}
+          handleClick={this.handleClick}
+          handleUserName={this.handleUserName}
+          startDate={this.state.startDate}
+          handleChange={this.handleChange}
+          />
+
+        : <img className="search-icon" alt="search icon" src={search} onClick={this.showSeacrh}/>
+      }
     {this.state.viewResult
       ?<React.Fragment>
-
-
        {/* {(this.filterData(this.state.startDate).length  ===0 )? <h1>no tweets</h1>:''} */}
        {this.state.result.length>0?
 
-         <Profile src={this.state.result[0].profile_image_url} userName={this.state.userName} startDate={this.state.startDate.format('ll')}/>
+        <Profile
+        reverse = {this.reverseArr}
+        src={this.state.result[0].profile_image_url} 
+        userName={this.state.userName} 
+        startDate={this.state.startDate.format('ll')}
+        />
 
        :''}
+      {this.state.result.length > 0 &&
+       this.filterData(this.state.startDate).length>0 ?
       <ul>
-      {this.state.result.length>1?
-        this.filterData(this.state.startDate).map((tweet, index) =>
-
-        <Result key={index} text={tweet.text} time={tweet.created_at} />
-        ):''
-        //if no data at that time
+        {
+        this.filterData(this.state.startDate).map((tweet, index) =>{
+          const date = new Date(tweet.created_at);
+          const time = `At => ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+          return <Result key={index} text={tweet.text} time={time} />
+        })
+        }
+        </ul>
+        :<div className="alert">No Tweets At This Date</div>
       }
-
-
-      </ul>
       </React.Fragment>
       :''
   }

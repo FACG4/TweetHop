@@ -1,11 +1,11 @@
 .grid-container {
-display: flex;
-justify-content: center;
-width: 250px;
-max-height: 180px;
-display: grid;
-/* border: solid 1px black; */
-margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    max-width: 250px;
+    max-height: 180px;
+    display: grid;
+    border: solid 1px black;
+    margin: 10px auto;
 }
 .grid-container > div {
 /* background-color: rgba(255, 255, 255, 0.8); */
@@ -18,15 +18,18 @@ font-size: 20px;
 /* display: flex;
  flex-direction: row-reverse; */
 padding-right: 20px;
+padding-top: 5px;
 grid-row-start: 1;
 grid-row-end: 3;
-
 }
 .userName {
 grid-column-start: 2;
-grid-column-end: 2;
+/* grid-column-end: 2; */
 }
 .startDate{
 grid-column-start: 2;
-grid-column-end: 2;
+/* grid-column-end: 2; */
 }
+
+
+

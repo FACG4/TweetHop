@@ -11,13 +11,6 @@ function Search(props) {
       <DatePicker  id="datepicker" className="input-search" selected={props.startDate} onChange={props.handleChange} name="startDate" dateFormat="LL"/>
       <input className="search" type="submit" value="Search"/>
     </form>
-
-    {
-      (props.error !== '')
-        ? <h1>
-            {props.error}</h1>
-        : null
-    }
   </div>);
 }
 
