@@ -8,7 +8,7 @@ function Search(props) {
   return (<div>
     <form  id="formSearch" onSubmit={props.handleClick}>
       <input type="text" id="userName" className="input-search" onChange={props.handleUserName} name="userName" value={props.userName} required="required"/>
-      <DatePicker  id="datepicker" className="input-search" selected={props.startDate} onChange={props.handleChange} name="startDate" dateFormat="LL"/>
+      <DatePicker  id="datepicker" className="input-search" selected={props.startDate} onChange={props.handleChange} name="startDate" dateFormat="ll"/>
       <input className="search" type="submit" value="Search"/>
     </form>
   </div>);

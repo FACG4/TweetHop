@@ -42,9 +42,11 @@ ul {
 .alert {
   padding: 10px;
   width: 300px;
-  margin: 0 auto;
+  margin: 5px auto;
   background-color: #67c0e1;
   color:ghostwhite;
+  border-radius: 5px;
 }
-
-
+.desc{
+  margin-top: 20px;
+}

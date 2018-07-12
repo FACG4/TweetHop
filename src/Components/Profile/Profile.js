@@ -1,5 +1,6 @@
 import React from 'react';
 import './Style.css';
+import sort from './sort.png';
 
 function Profile(props) {
   return (
@@ -9,7 +10,7 @@ function Profile(props) {
       <div className="userName">{props.userName}</div>
       <div className="startDate">{props.startDate}</div>
     </div>
-    <button onClick={props.reverse}> Sort </button>
+    <button className="sort" onClick={props.reverse}>Reverse order<img className="sortimg" src={sort} alt="" /></button>
     </React.Fragment>
   )
 }

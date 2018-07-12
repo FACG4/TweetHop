@@ -16,14 +16,11 @@
 
 }
 
-
-
 .search{
-  height: 50px;
-  width: 177px;
+  height: 36px;
+  width: 160px;
   border-radius:10px;
   text-align: center;
   font-size: 20px;
   background-color:#35acede6;
 }
-
