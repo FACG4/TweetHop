@@ -1,0 +1,28 @@
+.result{
+    /* border: solid 1px red; */
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #2196f32b;
+}
+.post_image{
+  width: 100%;
+  
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card .time {
+    padding: 5px 16px;
+    /* background-color: beige; */
+}
+
+hr{
+   margin: 20px auto;
+}

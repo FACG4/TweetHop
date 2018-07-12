@@ -5,21 +5,13 @@ import './style.css';
 
 function Search(props) {
 
-  return (<React.Fragment>
-    <form onSubmit={props.handleClick}>
-      <input type="text" id="userName" onChange={props.handleUserName} required="required"/>
-      <DatePicker  id="datepicker"selected={props.startDate} onChange={props.handleChange} dateFormat="LL"/>
+  return (<div>
+    <form  id="formSearch" onSubmit={props.handleClick}>
+      <input type="text" id="userName" className="input-search" onChange={props.handleUserName} name="userName" value={props.userName} required="required"/>
+      <DatePicker  id="datepicker" className="input-search" selected={props.startDate} onChange={props.handleChange} name="startDate" dateFormat="ll"/>
       <input className="search" type="submit" value="Search"/>
     </form>
-
-    {
-      (props.error !== '')
-        ? <h1>
-            {props.error}</h1>
-        : null
-    }
-      </React.Fragment>);
+  </div>);
 }
 
 export default Search;
-
